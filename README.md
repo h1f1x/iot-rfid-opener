@@ -16,9 +16,9 @@ The project is still in the exploring and learning phase. At that point, I have 
 - [x] MFRC522 RFID reader connected to the ESP32
 - [x] Micropython code to read the RFID card
 - [ ] Twilio API to send a message
-- [ ] How to do logging in Micropython
+- [x] How to do logging in Micropython
 - [ ] OTA updates of the ESP32
-- [ ] Handling secrets 
+- [x] Handling secrets 
 
 Something which would be nice to have and a standard to me:
 - [x] Deploy the code to the ESP32 with a single command
@@ -59,14 +59,11 @@ ls /dev/cu.*
 
 ### ESP32 firmware flashing (onetimer)
 
-Erase the flash memory:
+1. Download the firmware from https://micropython.org/download/esp32/
+2. Flash the firmware with:
 ```
-esptool.py --chip esp32 --port $SERIAL_PORT erase_flash
-```
-
-Flashing the firmware with Micropython (see below) (ESP32_GENERIC-OTA-20240602-v1.23.0.bin):
-```
-esptool.py --chip esp32 --port $SERIAL_PORT --baud 460800 write_flash -z 0x1000 ~/Downloads/ESP32_GENERIC-OTA-20240602-v1.23.0.bin
+just erase_flash
+just flash
 ```
 
 ## Micropython
@@ -74,15 +71,6 @@ esptool.py --chip esp32 --port $SERIAL_PORT --baud 460800 write_flash -z 0x1000 
 https://docs.micropython.org/en/latest/
 
 ESP32 Quick reference: https://docs.micropython.org/en/latest/esp32/quickref.html
-
-### Setup
-
-This will be handled by the `justfile`.
-
-Some additional python packages might be needed:
-```
-pip install mpfshell
-```
 
 ### Gists
 
@@ -101,6 +89,7 @@ mpremote
 mip.install("http://example.com/x/y/foo.py")
 ```
 
+Or check the `justfile` for more commands.
 
 ## RFID MFRC522 und the ESP32
 
